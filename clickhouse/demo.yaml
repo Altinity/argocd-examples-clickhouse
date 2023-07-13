@@ -1,0 +1,31 @@
+apiVersion: "clickhouse.altinity.com/v1"
+kind: "ClickHouseInstallation"
+metadata:
+  name: "argocd"
+spec:
+  configuration:
+    clusters:
+      - name: "demo"
+        layout:
+          shardsCount: 1
+          replicasCount: 2
+        templates:
+          podTemplate: server
+          volumeClaimTemplate: storage
+  templates:
+    podTemplates:
+      - name: server
+        spec:
+          containers:
+          - name: clickhouse
+            image: altinity/clickhouse-server:22.3.15.34.altinitystable
+    volumeClaimTemplates:
+      - name: storage
+        # Do not delete PVC if installation is dropped.
+        reclaimPolicy: Retain
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 50Gi
