@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: backend
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - path: clickhouse
+      - path: zookeeper
+  template:
+    metadata:
+      name: '{{path}}'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/Altinity/argocd-examples-clickhouse
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: ch
