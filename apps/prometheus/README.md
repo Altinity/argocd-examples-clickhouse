@@ -1,55 +1,26 @@
-# Helm Dependencies
+# Prometheus
 
-This example application demonstrates how an OTS (off-the-shelf) helm chart can be retrieved and
-pinned to a specific helm sem version from an upstream helm repository, and customized using a custom
-values.yaml in the private git repository.
+This example application installs prometheus from a
+helm chart located in the community repo located at
+https://prometheus-community.github.io/helm-charts. 
 
-In this example, the wordpress application is pulled from the stable helm repo, and pinned to v5.0.2:
+## Configuration
 
-```yaml
-dependencies:
-- name: wordpress
-  version: 5.0.2
-  repository: https://charts.helm.sh/stable
+Helm chart parameter settings are located in values.yaml. It contains
+parameter settings for the prometheus helm chart, indicated by the
+`prometheus:` property.  You can look up values in the GitHub repo. See
+https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus/values.yaml
+for more information.
+
+## Installation
+
+Sample installation is shown below. 
+
 ```
-
-A custom values.yaml is used to customize the parameters of the wordpress helm chart:
-
-```yaml
-wordpress:
-  wordpressPassword: foo
-  mariadb:
-    db:
-      password: bar
-    rootUser:
-      password: baz
-```
-
-### Subchart Note
-
-The wordpress chart referenced in this example contains a subchart for mariadb as specified in the requirements.yaml file of the wordpress chart:
-```yaml
-- name: mariadb
-  version: 5.x.x
-  repository: https://charts.helm.sh/stable
-  condition: mariadb.enabled
-  tags:
-    - wordpress-database
-```
-
-In order to disable this chart, you must set the value to false for both `mariadb.enabled` and `wordpress.mariadb.enabled`. The first is used by the mariadb subchart condition field, the second is used by the wordpress chart deployment template. An example demonstration is available in the values-nomaria.yaml file:
-```yaml
-mariadb:
-  enabled: false
-
-wordpress:
-  wordpressPassword: foo
-  mariadb:
-    enabled: false
-  externalDatabase:
-    host: localhost
-    user: bn_wordpress
-    password: ""
-    database: bitnami_wordpress
-    port: 3306
+argocd app create prometheus \
+ --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
+ --path apps/prometheus \
+ --dest-server https://kubernetes.default.svc --dest-namespace ch
+argocd app get prometheus
+argocd app sync prometheus 
 ```
