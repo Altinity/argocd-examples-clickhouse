@@ -24,3 +24,12 @@ argocd app create prometheus \
 argocd app get prometheus
 argocd app sync prometheus 
 ```
+
+## Additional notes
+
+None. 
+
+## Acknowledgements and Further Information
+
+[Prometheus Community Helm Charts GitHub Project](https://github.com/prometheus-community/helm-charts)
+

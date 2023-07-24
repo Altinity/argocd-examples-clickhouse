@@ -1,0 +1,66 @@
+# Setup Service to provide access to DBeaver for clients
+apiVersion: v1
+kind: Service
+metadata:
+  # DNS would be like cloudbeaver.<namespace>
+  name: cloudbeaver
+  labels:
+    app: cloudbeaver
+spec:
+  ports:
+    - port: 8978
+      name: client
+  selector:
+    app: cloudbeaver
+    what: node
+---
+
+# Set up CloudBeaver stateful set. 
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cloudbeaver
+  labels:
+    app: cloudbeaver
+spec:
+  selector:
+    matchLabels:
+      app: cloudbeaver
+  serviceName: cloudbeaver
+  replicas: 1
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: OrderedReady
+  template:
+    metadata:
+      labels:
+        app: cloudbeaver
+        what: node
+    spec:
+      containers:
+        - name: kubernetes-cloudbeaver
+          imagePullPolicy: IfNotPresent
+          image: "dbeaver/cloudbeaver:latest"
+          resources:
+            requests:
+              memory: "512M"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
+          ports:
+            - containerPort: 8978
+              name: client
+          volumeMounts:
+            - name: workspace
+              mountPath: /opt/cloudbeaver/workspace
+  # Storage for CloudBeaver workspace. 
+  volumeClaimTemplates:
+    - metadata:
+        name: workspace
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
