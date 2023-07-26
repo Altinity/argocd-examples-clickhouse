@@ -13,7 +13,7 @@ Sample installation is shown below.
 ```
 argocd app create grafana-operator \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
- --path apps/grafana-agent-operator \
+ --path apps/grafana-operator \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
 argocd app sync grafana-operator
 ```
@@ -24,5 +24,5 @@ None.
 
 ## Acknowledgements and Further Information
 
-[GrafanaLabs operator installation procedure](https://grafana.com/docs/agent/latest/operator/helm-getting-started/)
+[Grafana Operator Project](https://github.com/grafana-operator/grafana-operator)
 
