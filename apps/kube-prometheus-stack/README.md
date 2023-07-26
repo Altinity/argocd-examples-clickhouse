@@ -1,4 +1,4 @@
-# Prometheus
+# Prometheus Stack with Grafana
 
 This example application installs prometheus from a
 helm chart located in the community repo located at
@@ -17,9 +17,9 @@ for more information.
 Sample installation is shown below. 
 
 ```
-argocd app create prometheus-grafana \
+argocd app create kube-prometheus-stack \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
- --path apps/prometheus-grafana \
+ --path apps/kube-prometheus-stack \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
 argocd app get prometheus
 argocd app sync prometheus 
