@@ -12,6 +12,14 @@ spec:
         templates:
           podTemplate: server
           volumeClaimTemplate: storage
+    users:
+      root/networks/ip: "::/0"
+      root/password: secretsecret
+      root/profile: default
+      root/access_management: 1
+    zookeeper: 
+      nodes:
+        - host: zookeeper
   templates:
     podTemplates:
       - name: server
