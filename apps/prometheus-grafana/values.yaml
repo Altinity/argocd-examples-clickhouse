@@ -1,0 +1,5 @@
+# Values for Prometheus. 
+kube-prometheus-stack:
+#  server:
+#    persistentVolume:
+#      size: 16Gi
