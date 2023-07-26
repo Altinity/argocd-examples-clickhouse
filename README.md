@@ -1,4 +1,7 @@
-# Example ArgoCD application definitions for ClickHouse analytic applications. 
+# Example ArgoCD application definitions for ClickHouse analytic applications
+
+In this project you'll find ArgoCD applications and instructions to stand up 
+a full analytic stack based on ClickHouse in a Kubernetes cluster. 
 
 ## Prerequisites
 
