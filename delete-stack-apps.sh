@@ -8,4 +8,4 @@ argocd app delete zookeeper --yes
 argocd app delete cloudbeaver --yes
 argocd app delete grafana --yes
 argocd app delete prometheus --yes
-argocd app delete clickhouse-operator --yes
+echo "Now run delete-stack-final.sh to remove app dependencies"
