@@ -18,6 +18,9 @@ argocd app create clickhouse \
 argocd app sync clickhouse 
 ```
 
+Once ClickHouse is running you may login with user/password 
+root/secretsecret.
+
 ## Additional notes
 
 Depends on the following applications: 
@@ -27,4 +30,3 @@ Depends on the following applications:
 ## Acknowledgements and Further Information
 
 [Altinity Kubernetes Operator for ClickHouse GitHub Project](https://github.com/Altinity/clickhouse-operator)
-

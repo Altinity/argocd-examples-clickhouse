@@ -20,6 +20,9 @@ argocd app sync cloudbeaver
 kubectl port-forward svc/cloudbeaver -n ch 8978:8978
 ```
 
+Once the server is running you may configure the editor and provide 
+a password for the default cbadmin account. 
+
 ## Additional notes
 
 If you are accessing K8s via a bastion host, you can forward back to

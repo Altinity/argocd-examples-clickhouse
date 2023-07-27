@@ -19,6 +19,9 @@ argocd app sync grafana
 kubectl port-forward svc/grafana -n ch 3000:3000
 ```
 
+Once the grafana server is available you may login using user/password
+admin/admin. 
+
 ## Additional notes
 
 If you are accessing K8s via a bastion host, you can forward back to
