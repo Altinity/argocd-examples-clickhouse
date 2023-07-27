@@ -38,4 +38,13 @@ Run the `forward-stack.sh` script in the apps directory.
 
 ## Remove the analytic stack
 
-Run the `delete-stack.sh` script in the apps directory.
+Run `delete-stack-apps.sh` followed by `delete-stack-deps.sh` in the
+apps directory. 
+
+You must clean up the apps before removing dependencies. The Altinity 
+operator must be present to delete ClickHouse clusters. If you forget, 
+deletion of ClickHouse resources may hang. If that happens, take the 
+following steps to clean up fully. 
+
+1. Run 'kubectl edit' on any chi resource and remove the finalizer. 
+2. Drop the namespace. 
