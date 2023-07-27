@@ -17,6 +17,16 @@ spec:
       root/password: secretsecret
       root/profile: default
       root/access_management: 1
+    files:
+      query_log.xml: |
+        <clickhouse>
+          <query_log>
+             <database>system</database>
+             <table>query_log</table>
+             <engine>Engine = MergeTree PARTITION BY event_date ORDER BY event_time TTL event_date + INTERVAL 30 day</engine>
+             <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+          </query_log>
+        </clickhouse>
     zookeeper: 
       nodes:
         - host: zookeeper

@@ -12,10 +12,9 @@ Sample installation is shown below.
 
 ```
 argocd app create zookeeper \
- --repo https://github.com/Altinity/argocd-examples-zookeeper.git \
+ --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/zookeeper \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
-argocd app get zookeeper
 argocd app sync zookeeper 
 ```
 

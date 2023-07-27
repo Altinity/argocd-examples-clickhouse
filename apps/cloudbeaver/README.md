@@ -16,7 +16,6 @@ argocd app create cloudbeaver \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/cloudbeaver \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
-argocd app get cloudbeaver
 argocd app sync cloudbeaver 
 kubectl port-forward svc/cloudbeaver -n ch 8978:8978
 ```

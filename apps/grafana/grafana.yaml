@@ -1,5 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  # ClusterIP - Exposes the service on a cluster-internal IP
+  type: ClusterIP
+  # LoadBalancer - Exposes the service externally using a cloud provider’s load balancer
+  #type: LoadBalancer
+  ports:
+  - name: web
+    port: 3000
+    protocol: TCP
+    targetPort: web
+  selector:
+    app: grafana
+---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: grafana
   labels:
@@ -8,6 +27,7 @@ spec:
   selector:
     matchLabels:
       app: grafana
+  serviceName: grafanas
   replicas: 1
   template:
     metadata:
@@ -51,9 +71,18 @@ spec:
         volumeMounts:
         - name: grafana-persistent-storage
           mountPath: /var/lib/grafana
-      volumes:
-      - name: grafana-persistent-storage
-        emptyDir: {}
+      securityContext:
+        runAsUser: 472
+        fsGroup: 0
+  volumeClaimTemplates:
+    - metadata:
+        name: grafana-persistent-storage
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
 ---
 apiVersion: v1
 kind: Secret
@@ -65,22 +94,3 @@ data:
   # admin:admin
   admin-username: YWRtaW4=
   admin-password: YWRtaW4=
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: grafana-service
-  labels:
-    app: grafana
-spec:
-# ClusterIP - Exposes the service on a cluster-internal IP
-#  type: ClusterIP
-# LoadBalancer - Exposes the service externally using a cloud provider’s load balancer
-  type: LoadBalancer
-  ports:
-  - name: web
-    port: 3000
-    protocol: TCP
-    targetPort: web
-  selector:
-    app: grafana

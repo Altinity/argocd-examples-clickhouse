@@ -21,7 +21,6 @@ argocd app create prometheus \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/prometheus \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
-argocd app get prometheus
 argocd app sync prometheus 
 ```
 

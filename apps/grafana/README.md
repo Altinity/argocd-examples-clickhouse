@@ -12,10 +12,9 @@ Sample installation is shown below.
 
 ```
 argocd app create grafana \
- --repo https://github.com/Altinity/argocd-examples-grafana.git \
+ --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/grafana \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
-argocd app get grafana
 argocd app sync grafana 
 kubectl port-forward svc/grafana -n ch 3000:3000
 ```

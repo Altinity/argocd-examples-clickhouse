@@ -15,7 +15,6 @@ argocd app create clickhouse \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/clickhouse \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
-argocd app get clickhouse
 argocd app sync clickhouse 
 ```
 
