@@ -1,0 +1,6 @@
+# Install approved grafana operator. 
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- https://github.com/grafana-operator/grafana-operator//deploy/manifests/v4.8.0/?ref=v4.8.0
