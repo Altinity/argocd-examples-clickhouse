@@ -1,0 +1,4 @@
+# Change namespace to ch. 
+- op: replace 
+  path: /metadata/namespace
+  value: ch

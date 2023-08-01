@@ -4,3 +4,7 @@ kind: Kustomization
 
 resources:
 - https://github.com/grafana-operator/grafana-operator//deploy/manifests/v4.8.0/?ref=v4.8.0
+patches:
+  - path: ns-patch.yaml
+    target:
+      kind: '(ServiceAccount|Deployment|Service|RoleBinding)'
