@@ -20,7 +20,7 @@ Sample installation is shown below.
 argocd app create prometheus \
  --repo https://github.com/rahularram1999/argocd-examples-clickhouse.git.git \
  --path apps/prometheus \
- --dest-server https://kubernetes.default.svc --dest-namespace ch
+ --dest-server https://kubernetes.default.svc --dest-namespace clickhouse
 argocd app sync prometheus 
 ```
 

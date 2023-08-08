@@ -14,7 +14,7 @@ Sample installation is shown below.
 argocd app create clickhouse-operator \
  --repo https://github.com/rahularram1999/argocd-examples-clickhouse.git.git \
  --path apps/clickhouse-operator \
- --dest-server https://kubernetes.default.svc --dest-namespace ch
+ --dest-server https://kubernetes.default.svc --dest-namespace clickhouse
 argocd app sync clickhouse-operator
 ```
 
