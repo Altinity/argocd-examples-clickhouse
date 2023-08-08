@@ -19,8 +19,8 @@ spec:
           prune: true
           selfHeal: true
       source:
-        repoURL: https://github.com/Altinity/argocd-examples-clickhouse
-        targetRevision: main
+        repoURL: https://github.com/rahularram1999/argocd-examples-clickhouse.git
+        targetRevision: feature/turtlemint_argocd_clickhouse
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc

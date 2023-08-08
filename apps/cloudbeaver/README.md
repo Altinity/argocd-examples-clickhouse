@@ -13,7 +13,7 @@ UI access.
 
 ```
 argocd app create cloudbeaver \
- --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
+ --repo https://github.com/rahularram1999/argocd-examples-clickhouse.git.git \
  --path apps/cloudbeaver \
  --dest-server https://kubernetes.default.svc --dest-namespace ch
 argocd app sync cloudbeaver 
