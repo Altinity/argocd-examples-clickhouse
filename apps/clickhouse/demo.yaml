@@ -15,7 +15,7 @@ spec:
     users:
       root/networks/ip: "::/0"
       root/password: c1ickh0u$e
-      root/profile: analytics
+      root/profile: default
       root/access_management: 1
     files:
       query_log.xml: |
