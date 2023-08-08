@@ -5,17 +5,17 @@ metadata:
 spec:
   configuration:
     clusters:
-      - name: "demo"
+      - name: "prism"
         layout:
-          shardsCount: 1
+          shardsCount: 2
           replicasCount: 2
         templates:
-          podTemplate: server
-          volumeClaimTemplate: storage
+          podTemplate: clickhouse-in-zone-ap-south-1b
+          volumeClaimTemplate: turtlemint-ch-storage-vc-template
     users:
       root/networks/ip: "::/0"
-      root/password: secretsecret
-      root/profile: default
+      root/password: c1ickh0u$e
+      root/profile: analytics
       root/access_management: 1
     files:
       query_log.xml: |
@@ -27,23 +27,68 @@ spec:
              <flush_interval_milliseconds>7500</flush_interval_milliseconds>
           </query_log>
         </clickhouse>
+      clickhouse-s3.xml: |
+        <clickhouse>
+          <storage_configuration>
+              <disks>
+                  <s3disk>
+                      <type>s3</type>
+                      <endpoint>https://turtlemint-enriched-datawarehouse.s3.ap-south-1.amazonaws.com/clickhouse_db/s3cached/</endpoint>
+                      <use_environment_credentials>1</use_environment_credentials>  <!-- use IAM AWS role -->
+                          <!--access_key_id>xxxx</access_key_id>
+                          <secret_access_key>xxx</secret_access_key-->
+                  </s3disk>
+                  <cache>
+                      <type>cache</type>
+                      <disk>s3disk</disk>
+                      <path>/var/lib/clickhouse/disks/s3_cache/</path>
+                      <max_size>50Gi</max_size>  <!-- 50GB local cache to cache remote data -->
+                  </cache>
+              </disks>
+              <policies>
+                <hot_cold>
+                  <volumes>
+                      <hot>
+                      <disk>default</disk>
+                      </hot>
+                      <cold>
+                      <disk>s3disk</disk>
+                      </cold>
+                  </volumes>
+                  </hot_cold>
+              </policies>
+          </storage_configuration>
+        </clickhouse>
     zookeeper: 
       nodes:
         - host: zookeeper
   templates:
     podTemplates:
-      - name: server
+      - name: clickhouse-in-zone-ap-south-1b
         spec:
           containers:
           - name: clickhouse
-            image: altinity/clickhouse-server:22.3.15.34.altinitystable
+            image: clickhouse/clickhouse-server:23.5.3.24
+            resources:
+              requests:
+                memory: "5700Mi"
+              limits:
+                memory: "5922Mi"
+          nodeSelector:
+            nodeType: clickhouse  
+          tolerations:
+          - key: namespace
+            operator: Equal
+            value: clickhouse
+            effect: NoSchedule
     volumeClaimTemplates:
-      - name: storage
+      - name: turtlemint-ch-storage-vc-template
         # Do not delete PVC if installation is dropped.
         reclaimPolicy: Retain
         spec:
+          storageClassName: gp2
           accessModes:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 50Gi
+              storage: 100Gi

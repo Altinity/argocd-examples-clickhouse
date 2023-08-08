@@ -54,6 +54,13 @@ spec:
           volumeMounts:
             - name: workspace
               mountPath: /opt/cloudbeaver/workspace
+      nodeSelector:
+        nodeType: clickhouse  
+      tolerations:
+      - key: namespace
+        operator: Equal
+        value: clickhouse
+        effect: NoSchedule
   # Storage for CloudBeaver workspace. 
   volumeClaimTemplates:
     - metadata:

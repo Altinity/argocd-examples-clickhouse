@@ -24,4 +24,4 @@ spec:
         path: '{{path}}'
       destination:
         server: https://kubernetes.default.svc
-        namespace: ch
+        namespace: clickhouse

@@ -74,6 +74,13 @@ spec:
       securityContext:
         runAsUser: 472
         fsGroup: 0
+      nodeSelector:
+        nodeType: clickhouse 
+      tolerations:
+      - key: namespace
+        operator: Equal
+        value: clickhouse
+        effect: NoSchedule
   volumeClaimTemplates:
     - metadata:
         name: grafana-persistent-storage

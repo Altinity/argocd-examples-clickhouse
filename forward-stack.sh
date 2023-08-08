@@ -1,5 +1,5 @@
 #!/bin/bash
-NS=${NAMESPACE:-ch}
+NS=${NAMESPACE:-clickhouse}
 echo "This command will forward ports on the analytic stack in namespace ${NS}"
 echo -n "Press enter or ^c to cancel: "
 read
