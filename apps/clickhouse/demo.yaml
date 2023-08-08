@@ -27,38 +27,6 @@ spec:
              <flush_interval_milliseconds>7500</flush_interval_milliseconds>
           </query_log>
         </clickhouse>
-      clickhouse-s3.xml: |
-        <clickhouse>
-          <storage_configuration>
-              <disks>
-                  <s3disk>
-                      <type>s3</type>
-                      <endpoint>https://turtlemint-enriched-datawarehouse.s3.ap-south-1.amazonaws.com/clickhouse_db/s3cached/</endpoint>
-                      <use_environment_credentials>1</use_environment_credentials>  <!-- use IAM AWS role -->
-                          <!--access_key_id>xxxx</access_key_id>
-                          <secret_access_key>xxx</secret_access_key-->
-                  </s3disk>
-                  <cache>
-                      <type>cache</type>
-                      <disk>s3disk</disk>
-                      <path>/var/lib/clickhouse/disks/s3_cache/</path>
-                      <max_size>50Gi</max_size>  <!-- 50GB local cache to cache remote data -->
-                  </cache>
-              </disks>
-              <policies>
-                <hot_cold>
-                  <volumes>
-                      <hot>
-                      <disk>default</disk>
-                      </hot>
-                      <cold>
-                      <disk>s3disk</disk>
-                      </cold>
-                  </volumes>
-                  </hot_cold>
-              </policies>
-          </storage_configuration>
-        </clickhouse>
     zookeeper: 
       nodes:
         - host: zookeeper
