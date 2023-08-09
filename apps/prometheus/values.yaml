@@ -3,5 +3,7 @@ prometheus:
   server:
     persistentVolume:
       size: 16Gi
-  service:
-    port: 9200
+    service:
+      port: 9200
+    nodeSelector:
+      nodeType: clickhouse 

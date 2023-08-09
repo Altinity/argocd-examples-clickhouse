@@ -1,5 +1,5 @@
 # Values for ClickHouse operator
 clickhouse-operator:
-nodeSelector:
-  nodeType: clickhouse 
+  nodeSelector:
+    nodeType: clickhouse 
   # None. Add them at this level of indentation. 
