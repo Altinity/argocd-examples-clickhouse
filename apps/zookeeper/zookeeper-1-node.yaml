@@ -249,6 +249,13 @@ spec:
       securityContext:
         runAsUser: 1000
         fsGroup: 1000
+      nodeSelector:
+        nodeType: clickhouse 
+      tolerations:
+      - key: namespace
+        operator: Equal
+        value: clickhouse
+        effect: NoSchedule
   volumeClaimTemplates:
     - metadata:
         name: datadir-volume

@@ -13,9 +13,9 @@ UI access.
 
 ```
 argocd app create cloudbeaver \
- --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
+ --repo https://github.com/rahularram1999/argocd-examples-clickhouse.git.git \
  --path apps/cloudbeaver \
- --dest-server https://kubernetes.default.svc --dest-namespace ch
+ --dest-server https://kubernetes.default.svc --dest-namespace clickhouse
 argocd app sync cloudbeaver 
 kubectl port-forward svc/cloudbeaver -n ch 8978:8978
 ```
