@@ -7,8 +7,8 @@ spec:
     clusters:
       - name: "prism"
         layout:
-          shardsCount: 2
-          replicasCount: 2
+          shardsCount: 1
+          replicasCount: 4
         templates:
           podTemplate: clickhouse-in-zone-ap-south-1b
           volumeClaimTemplate: turtlemint-ch-storage-vc-template
