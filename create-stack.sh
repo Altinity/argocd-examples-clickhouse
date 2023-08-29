@@ -28,9 +28,14 @@ argocd app create cloudbeaver \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/cloudbeaver \
  --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
+argocd app create sink-connector-lightweight \
+ --repo https://github.com/Altinity/clickhouse-sink-connector.git \
+ --path sink-connector-lightweight/helm/clickhouse-debezium-embedded \
+ --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
 argocd app sync clickhouse-operator
 argocd app sync prometheus
 argocd app sync grafana
 argocd app sync zookeeper
 argocd app sync clickhouse
 argocd app sync cloudbeaver
+argocd app sync sink-connector-lightweight
