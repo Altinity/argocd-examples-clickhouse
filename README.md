@@ -21,6 +21,10 @@ kubectl get ns
 
 ## Login to ArgoCD
 
+ArgoCD default password can be retrieved from k8s secrets
+```
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
 All commands with argocd require an accessible ArgoCD API endpoint and a
 valid token. Get them as follows.
 ```

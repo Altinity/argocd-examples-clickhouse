@@ -5,3 +5,4 @@ echo -n "Press enter or ^c to cancel: "
 read
 set -x
 argocd app delete clickhouse-operator --yes
+argocd app delete grafana-operator --yes
