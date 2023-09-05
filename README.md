@@ -52,3 +52,8 @@ following steps to clean up fully.
 
 1. Run 'kubectl edit' on any chi resource and remove the finalizer. 
 2. Drop the namespace. 
+
+### Grafana (Manual steps)
+```
+grafana-cli admin reset-admin-password admin
+```
