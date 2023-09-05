@@ -1,0 +1,17 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: "$GRAFANA_PROMETHEUS_DATASOURCE_NAME"
+spec:
+  name: ${GRAFANA_PROMETHEUS_DATASOURCE_NAME}.yaml
+  datasources:
+    - name: "${GRAFANA_PROMETHEUS_DATASOURCE_NAME}"
+      type: prometheus
+      access: proxy
+      url: "${PROMETHEUS_URL}"
+      isDefault: true
+      version: 1
+      editable: false
+      jsonData:
+        tlsSkipVerify: true
+        timeInterval: "5s"
