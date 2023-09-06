@@ -1,7 +1,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: "$GRAFANA_DASHBOARD_NAME"
+  name: "clickhouse-queries-dashboard"
   labels:
     app: grafana
 spec:
@@ -10,7 +10,7 @@ spec:
   json: ""
   datasources:
     - inputName: "DS_PROMETHEUS"
-      datasourceName: "$GRAFANA_PROMETHEUS_DATASOURCE_NAME"
+      datasourceName: "clickhouse-operator-prometheus"
   plugins:
     - name: "vertamedia-clickhouse-datasource"
       version: "2.5.3"

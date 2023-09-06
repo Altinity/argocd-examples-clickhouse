@@ -1,14 +1,14 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDataSource
 metadata:
-  name: "$GRAFANA_PROMETHEUS_DATASOURCE_NAME"
+  name: "clickhouse-grafana-datasource"
 spec:
   name: ${GRAFANA_PROMETHEUS_DATASOURCE_NAME}.yaml
   datasources:
-    - name: "${GRAFANA_PROMETHEUS_DATASOURCE_NAME}"
+    - name: "clickhouse-operator-prometheus"
       type: prometheus
       access: proxy
-      url: "${PROMETHEUS_URL}"
+      url: "http://clickhouse-operator-prometheus:9090"
       isDefault: true
       version: 1
       editable: false

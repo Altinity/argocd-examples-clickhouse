@@ -1,7 +1,7 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: "$GRAFANA_DASHBOARD_NAME"
+  name: "clickhouse-operator-dashboard"
   labels:
     app: grafana
 spec:
@@ -10,7 +10,7 @@ spec:
   json: ""
   datasources:
     - inputName: "DS_PROMETHEUS"
-      datasourceName: "$GRAFANA_PROMETHEUS_DATASOURCE_NAME"
+      datasourceName: clickhouse-operator-prometheus
   # TODO remove this plugin definition after resolve https://github.com/integr8ly/grafana-operator/issues/155
   plugins:
     - name: "vertamedia-clickhouse-datasource"
