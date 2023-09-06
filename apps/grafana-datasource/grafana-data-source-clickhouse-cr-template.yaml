@@ -3,6 +3,9 @@ kind: GrafanaDatasource
 metadata:
   name: clickhouse-datasource
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   datasources:
     - name: "clickhouse"
       type: vertamedia-clickhouse-datasource

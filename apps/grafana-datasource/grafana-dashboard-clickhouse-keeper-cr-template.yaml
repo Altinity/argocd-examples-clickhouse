@@ -5,6 +5,9 @@ metadata:
   labels:
     app: grafana
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   url: https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/grafana-dashboard/ClickHouseKeeper_dashboard.json
   datasources:
     - inputName: "DS_PROMETHEUS"

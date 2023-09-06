@@ -5,6 +5,9 @@ metadata:
   labels:
     app: grafana
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   url: https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/grafana-dashboard/Altinity_ClickHouse_Operator_dashboard.json
   # look to https://github.com/integr8ly/grafana-operator/issues/416#issuecomment-849498860, json used as fallback
   json: ""

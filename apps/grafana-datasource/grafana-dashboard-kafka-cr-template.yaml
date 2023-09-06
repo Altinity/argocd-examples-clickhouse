@@ -5,6 +5,9 @@ metadata:
   labels:
     app: grafana
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   url: https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/grafana-dashboard/Kafka_dashboard.json
   json: ""
   datasources:

@@ -3,6 +3,9 @@ kind: GrafanaDatasource
 metadata:
   name: "clickhouse-grafana-datasource"
 spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
   datasources:
     - name: "clickhouse-operator-prometheus"
       type: prometheus
