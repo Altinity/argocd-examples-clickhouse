@@ -3,7 +3,6 @@ kind: GrafanaDataSource
 metadata:
   name: "clickhouse-grafana-datasource"
 spec:
-  name: ${GRAFANA_PROMETHEUS_DATASOURCE_NAME}.yaml
   datasources:
     - name: "clickhouse-operator-prometheus"
       type: prometheus
