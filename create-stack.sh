@@ -28,7 +28,7 @@ argocd app create zookeeper \
 argocd app create clickhouse \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/clickhouse \
- --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
+ --dest-server https://kubernetes.default.svc --dest-namespace ${NS}  --revision grafana_operator_dashboard
 argocd app create cloudbeaver \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/cloudbeaver \
