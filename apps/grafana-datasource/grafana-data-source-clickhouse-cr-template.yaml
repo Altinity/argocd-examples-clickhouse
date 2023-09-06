@@ -3,12 +3,11 @@ kind: GrafanaDataSource
 metadata:
   name: clickhouse-datasource
 spec:
-  name: ${ENDPOINT}.yaml
   datasources:
     - name: "clickhouse"
       type: vertamedia-clickhouse-datasource
       access: proxy
-      url: "http://clickhouse:8123
+      url: "http://clickhouse:8123"
       basicAuth: false
       isDefault: false
       version: 1
@@ -17,5 +16,3 @@ spec:
         tlsSkipVerify: true
         addCorsHeader: true
         defaultDatabase: "default"
-        usePOST: true
-        useYandexCloudAuthorization: true
