@@ -16,6 +16,8 @@ metadata:
   namespace: ch
   labels:
     dashboards: "grafana"
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   template:
     spec:

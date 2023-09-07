@@ -2,6 +2,8 @@ apiVersion: "clickhouse.altinity.com/v1"
 kind: "ClickHouseInstallation"
 metadata:
   name: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   configuration:
     clusters:
@@ -52,6 +54,8 @@ apiVersion: "clickhouse.altinity.com/v1"
 kind: "ClickHouseInstallation"
 metadata:
   name: "clickhouse-service"
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   defaults:
     templates:

@@ -57,3 +57,6 @@ following steps to clean up fully.
 ```
 grafana-cli admin reset-admin-password admin
 ```
+
+## ArgoCD SyncWaves
+https://redhat-scholars.github.io/argocd-tutorial/argocd-tutorial/04-syncwaves-hooks.html

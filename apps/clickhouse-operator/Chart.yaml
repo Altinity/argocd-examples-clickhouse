@@ -22,6 +22,10 @@ version: 0.21.2
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: "1.0"
 
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+
 dependencies:
 - name: altinity-clickhouse-operator
   version: 0.21.2
