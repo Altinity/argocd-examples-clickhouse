@@ -10,7 +10,7 @@ spec:
     - name: "clickhouse"
       type: vertamedia-clickhouse-datasource
       access: proxy
-      url: "http://chendpoint-template-service:8123"
+      url: "http://chendpoint-clickhouse-service:8123"
       basicAuth: false
       isDefault: false
       version: 1
