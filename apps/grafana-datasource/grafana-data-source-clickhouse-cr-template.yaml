@@ -12,6 +12,8 @@ spec:
       access: proxy
       url: "http://chendpoint-clickhouse-service:8123"
       basicAuth: false
+      basicAuthUser: "default"
+      basicAuthPassword: "secretsecret"
       isDefault: false
       version: 1
       editable: true
@@ -19,3 +21,5 @@ spec:
         tlsSkipVerify: true
         addCorsHeader: true
         defaultDatabase: "default"
+        xHeaderUser: "default"
+        xHeaderKey: "secretsecret"
