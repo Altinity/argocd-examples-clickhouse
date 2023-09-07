@@ -7,7 +7,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   datasource:
-    - name: "clickhouse"
+      name: "clickhouse"
       type: vertamedia-clickhouse-datasource
       access: proxy
       url: "http://chendpoint-clickhouse-service:8123"

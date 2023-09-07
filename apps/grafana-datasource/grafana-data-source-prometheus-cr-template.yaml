@@ -7,7 +7,7 @@ spec:
     matchLabels:
       dashboards: "grafana"
   datasource:
-    - name: "clickhouse-operator-prometheus"
+      name: "clickhouse-operator-prometheus"
       type: prometheus
       access: proxy
       url: "http://clickhouse-operator-prometheus:9090"
