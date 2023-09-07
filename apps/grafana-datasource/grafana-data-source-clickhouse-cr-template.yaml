@@ -6,7 +6,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  datasources:
+  datasource:
     - name: "clickhouse"
       type: vertamedia-clickhouse-datasource
       access: proxy

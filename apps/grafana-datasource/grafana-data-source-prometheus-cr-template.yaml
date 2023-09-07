@@ -6,7 +6,7 @@ spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
-  datasources:
+  datasource:
     - name: "clickhouse-operator-prometheus"
       type: prometheus
       access: proxy
