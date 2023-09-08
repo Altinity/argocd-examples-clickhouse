@@ -12,7 +12,7 @@ kubectl create ns ${NS}
 argocd app create prometheus-operator-crds \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/prometheus-operator-crds \
- --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
+ --dest-server https://kubernetes.default.svc --dest-namespace ${NS}   --revision grafana_operator_dashboard
 argocd app create clickhouse-operator \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/clickhouse-operator \
@@ -20,7 +20,7 @@ argocd app create clickhouse-operator \
 argocd app create prometheus \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/prometheus \
- --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
+ --dest-server https://kubernetes.default.svc --dest-namespace ${NS}   --revision grafana_operator_dashboard
  argocd app create grafana-operator \
   --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
   --path apps/grafana-operator \
@@ -45,6 +45,7 @@ argocd app create cloudbeaver \
   --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
     --path apps/grafana-datasource \
     --dest-server https://kubernetes.default.svc --dest-namespace ${NS} --revision grafana_operator_dashboard
+argocd app sync prometheus-operator-crds
 argocd app sync clickhouse-operator
 argocd app sync prometheus
 argocd app sync grafana-operator
