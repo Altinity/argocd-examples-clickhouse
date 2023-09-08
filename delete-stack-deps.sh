@@ -6,3 +6,4 @@ read
 set -x
 argocd app delete clickhouse-operator --yes
 argocd app delete grafana-operator --yes
+argocd app delete prometheus-operator --yes
