@@ -9,9 +9,9 @@ kubectl create ns ${NS}
 
 #helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --version v5.3.0 --values apps/grafana-operator/values.yaml --namespace ${NS} --create-namespace
 #sleep 5
-argocd app create prometheus-operator \
+argocd app create prometheus-operator-crds \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
- --path apps/prometheus-operator \
+ --path apps/prometheus-operator-crds \
  --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
 argocd app create clickhouse-operator \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
