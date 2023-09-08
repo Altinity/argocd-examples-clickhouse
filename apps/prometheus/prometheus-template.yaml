@@ -129,6 +129,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   name: prometheus
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
   labels:
     prometheus: prometheus
 spec:
@@ -154,11 +156,7 @@ spec:
       role: alert-rules
       prometheus: prometheus
   enableAdminAPI: false
-  alerting:
-    alertmanagers:
-    - namespace: ${PROMETHEUS_NAMESPACE}
-      name: alertmanager
-      port: web
+
 ---
 # Setup ClusterIP Service
 # Service would be created in kubectl-specified namespace
