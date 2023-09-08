@@ -54,8 +54,14 @@ following steps to clean up fully.
 2. Drop the namespace. 
 
 ### Grafana (Manual steps)
+The admin password can be reset by executing the following command on the grafana pod.
 ```
 grafana-cli admin reset-admin-password admin
+```
+
+The `admin` password is stored in `grafana-admin-credentials` secret.
+```
+kubectl get secret grafana-admin-credentials --template={{.data.GF_SECURITY_ADMIN_PASSWORD}} -n ch|base64 -d
 ```
 
 ## ArgoCD SyncWaves

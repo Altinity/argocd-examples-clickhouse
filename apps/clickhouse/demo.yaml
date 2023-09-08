@@ -1,3 +1,23 @@
+## Prometheus operator podMonitor
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: clickhouse-metrics
+  namespace: prometheus
+  labels:
+    app: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - test
+  selector:
+    matchLabels:
+      clickhouse.altinity.com/app: chop
+  podMetricsEndpoints:
+    - port: "metrics"
+
+---
+
 apiVersion: "clickhouse.altinity.com/v1"
 kind: "ClickHouseInstallation"
 metadata:
@@ -6,6 +26,14 @@ metadata:
     argocd.argoproj.io/sync-wave: "3"
 spec:
   configuration:
+    settings:
+      # listen clickhosue-server embedded prometheus endpoint
+      prometheus/endpoint: /metrics
+      prometheus/port: 9363
+      prometheus/metrics: true
+      prometheus/events: true
+      prometheus/asynchronous_metrics: true
+      prometheus/status_info: true
     clusters:
       - name: "demo"
         layout:
@@ -34,11 +62,21 @@ spec:
         - host: zookeeper
   templates:
     podTemplates:
+      - name: pod-template-with-metrics
+        metadata:
+          # for `additionalScrapeConfigs`, look https://github.com/Altinity/clickhouse-operator/blob/master/deploy/prometheus/prometheus-template.yaml#L11
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/path: "/metrics"
+            prometheus.io/port: "9363"
       - name: server
         spec:
           containers:
           - name: clickhouse
             image: altinity/clickhouse-server:22.3.15.34.altinitystable
+            ports:
+              - name: "metrics"
+                containerPort: 9363
     volumeClaimTemplates:
       - name: storage
         # Do not delete PVC if installation is dropped.
