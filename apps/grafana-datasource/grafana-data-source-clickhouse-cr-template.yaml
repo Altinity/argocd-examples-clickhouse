@@ -10,9 +10,9 @@ spec:
       name: "clickhouse"
       type: vertamedia-clickhouse-datasource
       access: proxy
-      url: "http://chendpoint-clickhouse-service:8123"
+      url: "http://chi-argocd-demo-0-0:8123"
       basicAuth: false
-      basicAuthUser: "default"
+      basicAuthUser: "root"
       basicAuthPassword: "secretsecret"
       isDefault: false
       version: 1
@@ -21,5 +21,7 @@ spec:
         tlsSkipVerify: true
         addCorsHeader: true
         defaultDatabase: "default"
-        xHeaderUser: "default"
+        usePOST: true
+        useYandexCloudAuthorization: true
+        xHeaderUser: "root"
         xHeaderKey: "secretsecret"
