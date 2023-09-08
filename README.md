@@ -10,6 +10,10 @@ You'll need a Kubernetes cluster. EKS, GKE, or minikube should all be OK.
 Install the following tools in your environment. ArgoCD should be installed
 in the argocd namespace. 
 
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [argocd](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 * [kustomize](https://kubectl.docs.kubernetes.io/installation/kustomize/)
