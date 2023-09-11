@@ -68,5 +68,14 @@ The `admin` password is stored in `grafana-admin-credentials` secret.
 kubectl get secret grafana-admin-credentials --template={{.data.GF_SECURITY_ADMIN_PASSWORD}} -n ch|base64 -d
 ```
 
+### Prometheus Operator
+ArgoCD has a bug where the prometheus operator CRD cannot be installed
+because of the `CRD too long` error.
+This is a known issue with ArgoCD. See
+https://github.com/prometheus-community/helm-charts/issues/2479
+To work around this, stripped down CRDs are used.
+`make stripped-down-crd` will generate the stripped down CRDs in prometheus operator.
+
+
 ## ArgoCD SyncWaves
 https://redhat-scholars.github.io/argocd-tutorial/argocd-tutorial/04-syncwaves-hooks.html
