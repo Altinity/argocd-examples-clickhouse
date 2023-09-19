@@ -7,6 +7,9 @@ set -x
 echo "*********** Creating namespace ***********"
 kubectl create ns ${NS}
 
+echo "*** Creating namespace prometheus required for CH operator****"
+kubectl create ns prometheus
+
 #helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --version v5.3.0 --values apps/grafana-operator/values.yaml --namespace ${NS} --create-namespace
 #sleep 5
 argocd app create prometheus-operator-crds \
@@ -33,10 +36,10 @@ argocd app create clickhouse \
  --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
  --path apps/clickhouse \
  --dest-server https://kubernetes.default.svc --dest-namespace ${NS}  --revision grafana_operator_dashboard
-argocd app create cloudbeaver \
- --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
- --path apps/cloudbeaver \
- --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
+#argocd app create cloudbeaver \
+# --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
+# --path apps/cloudbeaver \
+# --dest-server https://kubernetes.default.svc --dest-namespace ${NS}
  argocd app create grafana \
   --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
   --path apps/grafana \
@@ -47,10 +50,10 @@ argocd app create cloudbeaver \
     --dest-server https://kubernetes.default.svc --dest-namespace ${NS} --revision grafana_operator_dashboard
 argocd app sync prometheus-operator-crds
 argocd app sync clickhouse-operator
-argocd app sync prometheus
+#argocd app sync prometheus
 argocd app sync grafana-operator
 argocd app sync zookeeper
 argocd app sync clickhouse
-argocd app sync cloudbeaver
+#argocd app sync cloudbeaver
 argocd app sync grafana
 argocd app sync grafana-datasource

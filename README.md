@@ -78,4 +78,6 @@ To work around this, stripped down CRDs are used.
 
 
 ## ArgoCD SyncWaves
+App of Apps pattern
+https://codefresh.io/blog/argo-cd-application-dependencies/
 https://redhat-scholars.github.io/argocd-tutorial/argocd-tutorial/04-syncwaves-hooks.html
