@@ -10,7 +10,7 @@ spec:
       name: "clickhouse-operator-prometheus"
       type: prometheus
       access: proxy
-      url: "http://clickhouse-operator-prometheus:9090"
+      url: "http://prometheus:9090"
       isDefault: true
       version: 1
       editable: false
