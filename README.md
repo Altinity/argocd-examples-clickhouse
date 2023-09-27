@@ -68,6 +68,12 @@ The `admin` password is stored in `grafana-admin-credentials` secret.
 kubectl get secret grafana-admin-credentials --template={{.data.GF_SECURITY_ADMIN_PASSWORD}} -n ch|base64 -d
 ```
 
+Open the grafana UI by setting up port-forward on the grafana pod.
+```
+kubectl port-forward -n ch svc/grafana-service 3000:3000
+```
+Login as admin and the password retrieved in the previous step.
+
 ### Prometheus Operator
 ArgoCD has a bug where the prometheus operator CRD cannot be installed
 because of the `CRD too long` error.
