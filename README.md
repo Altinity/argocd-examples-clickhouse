@@ -9,6 +9,10 @@ You'll need a Kubernetes cluster. EKS, GKE, or minikube should all be OK.
 
 Install the following tools in your environment. ArgoCD should be installed
 in the argocd namespace. 
+You can use the script
+```
+./install-argocd.sh
+```
 
 ```
 kubectl create namespace argocd
@@ -36,6 +40,10 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443 &
 argocd login localhost:8080 --username=admin --password="yourpassword" --insecure
 ```
 
+You can also use the script.
+```
+./login-argocd.sh
+```
 ## Bring up the analytic stack
 
 Run the `create-stack.sh` script in the apps directory.
