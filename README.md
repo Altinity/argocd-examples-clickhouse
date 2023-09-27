@@ -81,3 +81,6 @@ To work around this, stripped down CRDs are used.
 App of Apps pattern
 https://codefresh.io/blog/argo-cd-application-dependencies/
 https://redhat-scholars.github.io/argocd-tutorial/argocd-tutorial/04-syncwaves-hooks.html
+
+## ToDO (Use sops to encrypt passwords)
+https://cloud.redhat.com/blog/a-guide-to-gitops-and-secret-management-with-argocd-operator-and-sops
