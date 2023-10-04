@@ -29,7 +29,7 @@ spec:
         </clickhouse>
     zookeeper: 
       nodes:
-        - host: zookeeper
+        - host: keeper
   templates:
     podTemplates:
       - name: server
