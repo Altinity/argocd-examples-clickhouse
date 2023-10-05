@@ -12,6 +12,7 @@ apiVersion: grafana.integreatly.org/v1beta1
 kind: Grafana
 metadata:
   name: grafana
+  namespace: ch
   labels:
     dashboards: "grafana"
   annotations:

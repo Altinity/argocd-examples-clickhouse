@@ -3,7 +3,7 @@ NS=${NAMESPACE:-ch}
 echo "This command will install the analytic stack in namespace ${NS}"
 echo -n "Press enter or ^c to cancel: "
 read
-set -x
+#set -x
 echo "*********** Creating namespace ***********"
 kubectl create ns ${NS}
 
@@ -17,6 +17,8 @@ for apps in "${applications[@]}"; do
   argocd app create ${apps} \
     --repo https://github.com/Altinity/argocd-examples-clickhouse.git --path apps/${apps} \
     --dest-server https://kubernetes.default.svc --dest-namespace ${NS} --revision grafana_operator_dashboard
+  echo "*********** Created ${apps} ***********"
+  sleep 2
 done
 
 sleep 5
