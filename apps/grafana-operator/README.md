@@ -17,7 +17,13 @@ This is a OCI helm chart, helm started support OCI in version 3.8.0.
 helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --version v5.3.0
 ```
 
-Sadly helm OCI charts currently don't support searching for available versions of a helm [oci registry](https://github.com/helm/helm/issues/11000).
+```
+argocd app create grafana-operator \
+--repo https://github.com/Altinity/argocd-examples-clickhouse.git \
+--path apps/grafana-operator \
+--dest-server https://kubernetes.default.svc --dest-namespace ch
+argocd app sync grafana-operator
+```
 
 ## Development
 
