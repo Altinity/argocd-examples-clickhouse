@@ -7,9 +7,6 @@ set -x
 echo "*********** Creating namespace ***********"
 kubectl create ns ${NS}
 
-echo "*** Creating namespace prometheus required for CH operator****"
-kubectl create ns prometheus
-
 declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator zookeeper clickhouse grafana grafana-datasource)
 
 #helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --version v5.3.0 --values apps/grafana-operator/values.yaml --namespace ${NS} --create-namespace
