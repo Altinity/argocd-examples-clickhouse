@@ -4,7 +4,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: prometheus
-  namespace: ch
+  #namespace: ch
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 roleRef:
@@ -21,7 +21,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: prometheus
-  namespace: ch
+  #namespace: ch
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 rules:
@@ -51,4 +51,4 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
   name: prometheus
-  namespace: ch
+  #namespace: ch
