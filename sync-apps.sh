@@ -4,9 +4,8 @@ echo "This command will sync the kubernetes cluster with the state in git for na
 echo -n "Press enter or ^c to cancel: "
 read
 set -x
-argocd app sync clickhouse-operator
-argocd app sync prometheus
-argocd app sync grafana
-argocd app sync zookeeper
-argocd app sync clickhouse
-argocd app sync cloudbeaver
+declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator zookeeper clickhouse grafana grafana-datasource)
+for apps in "${applications[@]}"; do
+  echo "*********** Syncing ${apps} ***********"
+  argocd app sync ${apps}
+done
