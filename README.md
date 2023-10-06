@@ -47,6 +47,11 @@ You can also use the script.
 ## Bring up the analytic stack
 
 Run the `create-stack.sh` script in the apps directory.
+If you need to the run changes from a specific branch
+use the following command
+```
+./create-stack.sh -b <branch-name>
+```
 
 ## Make endpoints accessible
 
