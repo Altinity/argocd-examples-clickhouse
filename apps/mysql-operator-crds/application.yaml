@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mysql-operator-crds
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: mysql-operator-crds
+    repoURL: https://raw.githubusercontent.com/mysql/mysql-operator/trunk/deploy/deploy-crds.yaml
+    targetRevision: HEAD
