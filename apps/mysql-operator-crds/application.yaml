@@ -9,7 +9,7 @@ spec:
       recurse: true
     repoURL: https://github.com/mysql/mysql-operator.git
     targetRevision: HEAD
-    path: deploy/deploy-crds.yaml
+    path: deploy
   destination:
     server: https://kubernetes.default.svc
     namespace: mysql-operator-crds
