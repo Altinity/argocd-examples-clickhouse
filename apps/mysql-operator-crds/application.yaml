@@ -5,6 +5,8 @@ metadata:
 spec:
   project: default
   source:
+    directory:
+      recurse: true
     repoURL: https://github.com/mysql/mysql-operator.git
     targetRevision: HEAD
     path: deploy/deploy-crds.yaml
