@@ -3,7 +3,7 @@ kind: InnoDBCluster
 metadata:
   name: mycluster
   annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=false
 spec:
   secretName: mypwds
   tlsUseSelfSigned: true
