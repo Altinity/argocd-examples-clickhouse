@@ -7,7 +7,6 @@ spec:
   source:
     directory:
       include: 'deploy-crds.yaml'
-      recurse: true
     repoURL: https://github.com/mysql/mysql-operator.git
     targetRevision: HEAD
     path: deploy
