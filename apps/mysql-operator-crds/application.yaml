@@ -11,4 +11,5 @@ spec:
     targetRevision: HEAD
     path: deploy
   destination:
+    namespace: ch
     server: https://kubernetes.default.svc
