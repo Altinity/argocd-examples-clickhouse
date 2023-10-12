@@ -22,9 +22,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 type: kubernetes.io/basic-auth
 stringData:
-  rootUser: "root"
-  rootHost: "%"
-  rootPassword: "sakila"
-  username: "root"
-  password: "sakila"
+  rootUser: 'root'
+  rootHost: '%'
+  rootPassword: 'sakila'
+  #username: "root"
+  #password: "sakila"
 
