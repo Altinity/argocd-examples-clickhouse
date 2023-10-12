@@ -1,14 +1,14 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: mysql-operator
-  namespace: ch
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/mysql/mysql-operator.git
-    targetRevision: HEAD
-    path: deploy/deploy-operator.yaml
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: mysql-operator
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: mysql-operator
+#  namespace: ch
+#spec:
+#  project: default
+#  source:
+#    repoURL: https://github.com/mysql/mysql-operator.git
+#    targetRevision: HEAD
+#    path: deploy/deploy-operator.yaml
+#  destination:
+#    server: https://kubernetes.default.svc
+#    namespace: mysql-operator
