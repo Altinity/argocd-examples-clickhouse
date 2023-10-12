@@ -20,4 +20,6 @@ stringData:
   rootUser: "root"
   rootHost: "%"
   rootPassword: "sakila"
+  username: "root"
+  password: "sakila"
 
