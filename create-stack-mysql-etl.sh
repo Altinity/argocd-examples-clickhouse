@@ -30,7 +30,7 @@ for apps in "${applications[@]}"; do
   else
     argocd app create ${apps} \
           --repo https://github.com/Altinity/argocd-examples-clickhouse.git --path apps/${apps} \
-          --dest-server https://kubernetes.default.svc --dest-namespace ${NS} --revision ${branch}
+          --dest-server https://kubernetes.default.svc --dest-namespace ${NS} --revision ${branch} --app-namespace ${NS}
   fi
   echo "*********** Created ${apps} ***********"
   sleep 2

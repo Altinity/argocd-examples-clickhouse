@@ -5,10 +5,11 @@ metadata:
   namespace: ch
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=false
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   secretName: mypwds
   tlsUseSelfSigned: true
-  instances: 3
+  instances: 1
   router:
     instances: 1
 ---
@@ -17,6 +18,8 @@ kind: Secret
 metadata:
   namespace: ch
   name: mypwds
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 type: kubernetes.io/basic-auth
 stringData:
   rootUser: "root"
