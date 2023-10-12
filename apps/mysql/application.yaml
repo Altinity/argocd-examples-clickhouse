@@ -2,6 +2,7 @@ apiVersion: mysql.oracle.com/v2
 kind: InnoDBCluster
 metadata:
   name: mycluster
+  namespace: ch
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=false
 spec:
@@ -14,6 +15,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
+  namespace: ch
   name: mypwds
 type: kubernetes.io/basic-auth
 stringData:
