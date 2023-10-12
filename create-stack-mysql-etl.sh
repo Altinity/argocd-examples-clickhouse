@@ -50,6 +50,8 @@ done
 #argocd app sync mysql-operator-crds --revision add_sink_connector
 #argocd app create mysql-operator-crds --repo https://github.com/Altinity/argocd-examples-clickhouse.git --path apps/mysql-operator-crds --dest-server https://kubernetes.default.svc --dest-namespace ch --revision add_sink_connector
 
+argocd app create mysql --repo https://github.com/Altinity/argocd-examples-clickhouse.git --path apps/mysql --dest-server https://kubernetes.default.svc --dest-namespace ch --revision add_sink_connector
+
 
 #argocd app create prometheus-operator-crds \
 # --repo https://github.com/Altinity/argocd-examples-clickhouse.git \

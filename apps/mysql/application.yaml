@@ -1,30 +1,57 @@
-apiVersion: mysql.oracle.com/v2
-kind: InnoDBCluster
-metadata:
-  name: mycluster
-  namespace: ch
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=false
-    argocd.argoproj.io/sync-wave: "2"
-spec:
-  secretName: mypwds
-  tlsUseSelfSigned: true
-  instances: 1
-  router:
-    instances: 1
+#apiVersion: mysql.oracle.com/v2
+#kind: InnoDBCluster
+#metadata:
+#  name: mycluster
+#  namespace: ch
+#  annotations:
+#    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=false
+#    argocd.argoproj.io/sync-wave: "2"
+#spec:
+#  secretName: mypwds
+#  tlsUseSelfSigned: true
+#  instances: 1
+#  router:
+#    instances: 1
+#---
+#apiVersion: v1
+#kind: Secret
+#metadata:
+#  namespace: ch
+#  name: mypwds
+#  annotations:
+#    argocd.argoproj.io/sync-wave: "1"
+#type: kubernetes.io/basic-auth
+#stringData:
+#  rootUser: 'root'
+#  rootHost: '%'
+#  rootPassword: 'sakila'
+#  #username: "root"
+#  #password: "sakila"
+#
 ---
-apiVersion: v1
-kind: Secret
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
+  name: mysql
   namespace: ch
-  name: mypwds
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
-type: kubernetes.io/basic-auth
-stringData:
-  rootUser: 'root'
-  rootHost: '%'
-  rootPassword: 'sakila'
-  #username: "root"
-  #password: "sakila"
-
+spec:
+  destination:
+    namespace: ch
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: mysql-operator
+    repoURL: https://helm-charts.bitpoke.io
+    targetRevision: 0.0.3
+  syncPolicy:
+    retry:
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+      limit: 5
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
