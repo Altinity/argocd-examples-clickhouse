@@ -16,5 +16,6 @@ spec:
         - name: deploy.route.enabled
           value: "false"
     chart: sink-connector-lightweight
-    repoURL: https://github.com/Altinity/clickhouse-sink-connector/tree/develop/sink-connector-lightweight/helm/sink-connector-lightweight
+    path: sink-connector-lightweight/helm/sink-connector-lightweight
+    repoURL: https://github.com/Altinity/clickhouse-sink-connector.git
     targetRevision: 0.1.0
