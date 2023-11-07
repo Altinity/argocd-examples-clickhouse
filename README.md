@@ -53,6 +53,12 @@ use the following command
 ./create-stack.sh -b <branch-name>
 ```
 
+To run the ETL stack with MySQL, Clickhouse sink connector
+use the following command
+```
+./create-stack-mysql-etl.sh -b <branch-name>
+```
+
 ## Make endpoints accessible
 
 Run the `forward-stack.sh` script in the apps directory.
