@@ -12,7 +12,7 @@ spec:
   source:
     path: 'infra/prometheus-operator-crds'
     repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
-    targetRevision: '5146'
+    #targetRevision: '5146'
   syncPolicy:
     automated: {}
 
@@ -29,6 +29,6 @@ spec:
   source:
     path: 'infra/prometheus-rbac'
     repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
-    targetRevision: '5146'
+    #targetRevision: '5146'
   syncPolicy:
     automated: {}
