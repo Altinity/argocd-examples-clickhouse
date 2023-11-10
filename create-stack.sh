@@ -13,8 +13,9 @@ do
         b) branch=${OPTARG};; # branch
     esac
 done
+declare -a applications=(infra clickhouse-operator zookeeper clickhouse)
 
-declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator zookeeper clickhouse grafana grafana-datasource)
+#declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator zookeeper clickhouse grafana grafana-datasource)
 
 #helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --version v5.3.0 --values apps/grafana-operator/values.yaml --namespace ${NS} --create-namespace
 #sleep 5
