@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: prometheus-operator-crds
+  namespace: ch
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
@@ -20,6 +21,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: ch
   name: prometheus-rbac
   annotations:
     argocd.argoproj.io/sync-wave: "2"
@@ -39,6 +41,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: ch
   name: prometheus-operator
   annotations:
     argocd.argoproj.io/sync-wave: "3"
@@ -58,6 +61,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: ch
   name: prometheus
   annotations:
     argocd.argoproj.io/sync-wave: "4"
@@ -78,6 +82,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: ch
   name: grafana-operator
   annotations:
     argocd.argoproj.io/sync-wave: "5"
@@ -93,11 +98,11 @@ spec:
   syncPolicy:
     automated: {}
 
-
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: ch
   name: grafana
   annotations:
     argocd.argoproj.io/sync-wave: "6"
@@ -118,6 +123,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  namespace: ch
   name: grafana-datasource
   annotations:
     argocd.argoproj.io/sync-wave: "7"
