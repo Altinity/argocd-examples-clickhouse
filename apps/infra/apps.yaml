@@ -53,3 +53,82 @@ spec:
     #targetRevision: '5146'
   syncPolicy:
     automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/prometheus'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/grafana-operator'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/grafana'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-datasource
+  annotations:
+    argocd.argoproj.io/sync-wave: "7"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/grafana-datasource'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
