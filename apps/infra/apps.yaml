@@ -34,3 +34,22 @@ spec:
     #targetRevision: '5146'
   syncPolicy:
     automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/prometheus-operator'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
