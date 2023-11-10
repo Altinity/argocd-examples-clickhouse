@@ -13,7 +13,7 @@ spec:
   source:
     path: 'infra/prometheus-operator-crds'
     repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
-    #targetRevision: '5146'
+    targetRevision: 'grafana_operator_dashboard'
   syncPolicy:
     automated: {}
 
