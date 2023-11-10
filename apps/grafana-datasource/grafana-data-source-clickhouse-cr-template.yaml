@@ -1,0 +1,27 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: clickhouse-datasource
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+      name: "clickhouse"
+      type: vertamedia-clickhouse-datasource
+      access: proxy
+      url: "http://chi-argocd-demo-0-0:8123"
+      basicAuth: false
+      basicAuthUser: "root"
+      basicAuthPassword: "secretsecret"
+      isDefault: false
+      version: 1
+      editable: true
+      jsonData:
+        tlsSkipVerify: true
+        addCorsHeader: true
+        defaultDatabase: "default"
+        usePOST: true
+        useYandexCloudAuthorization: true
+        xHeaderUser: "root"
+        xHeaderKey: "secretsecret"

@@ -1,0 +1,16 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: "zookeeper-dashboard"
+  labels:
+    app: grafana
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/grafana-dashboard/Zookeeper_dashboard.json
+  # look to https://github.com/integr8ly/grafana-operator/issues/416#issuecomment-849498860, json used as fallback
+  json: ""
+  datasources:
+    - inputName: "DS_PROMETHEUS"
+      datasourceName: "clickhouse-operator-prometheus"

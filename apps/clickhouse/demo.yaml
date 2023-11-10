@@ -1,9 +1,39 @@
+## Prometheus operator podMonitor
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: clickhouse-metrics
+  namespace: ch
+  labels:
+    app: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - test
+  selector:
+    matchLabels:
+      clickhouse.altinity.com/app: chop
+  podMetricsEndpoints:
+    - port: "metrics"
+
+---
+
 apiVersion: "clickhouse.altinity.com/v1"
 kind: "ClickHouseInstallation"
 metadata:
   name: "argocd"
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   configuration:
+    settings:
+      # listen clickhosue-server embedded prometheus endpoint
+      prometheus/endpoint: /metrics
+      prometheus/port: 9363
+      prometheus/metrics: true
+      prometheus/events: true
+      prometheus/asynchronous_metrics: true
+      prometheus/status_info: true
     clusters:
       - name: "demo"
         layout:
@@ -32,11 +62,21 @@ spec:
         - host: keeper
   templates:
     podTemplates:
+      - name: pod-template-with-metrics
+        metadata:
+          # for `additionalScrapeConfigs`, look https://github.com/Altinity/clickhouse-operator/blob/master/deploy/prometheus/prometheus-template.yaml#L11
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/path: "/metrics"
+            prometheus.io/port: "9363"
       - name: server
         spec:
           containers:
           - name: clickhouse
-            image: altinity/clickhouse-server:23.3.8.22.altinitystable
+            image: altinity/clickhouse-server:22.3.15.34.altinitystable
+            ports:
+              - name: "metrics"
+                containerPort: 9363
     volumeClaimTemplates:
       - name: storage
         # Do not delete PVC if installation is dropped.
@@ -47,3 +87,33 @@ spec:
           resources:
             requests:
               storage: 50Gi
+---
+apiVersion: "clickhouse.altinity.com/v1"
+kind: "ClickHouseInstallation"
+metadata:
+  name: "clickhouse-service"
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  defaults:
+    templates:
+      serviceTemplate: svc-template
+  configuration:
+    settings:
+      http_port: 8124
+      tcp_port: 9001
+      interserver_http_port: 9010
+  templates:
+    serviceTemplates:
+      - name: svc-template
+        generateName: chendpoint-{chi}
+        metadata:
+          labels:
+            custom.label: "custom.value"
+        spec:
+          ports:
+            - name: http
+              port: 8123
+            - name: tcp
+              port: 9000
+          type: ClusterIP

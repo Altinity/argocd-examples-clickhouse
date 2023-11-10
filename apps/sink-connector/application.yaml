@@ -1,0 +1,21 @@
+#apiVersion: argoproj.io/v1alpha1
+#kind: Application
+#metadata:
+#  name: sink-connector
+#  namespace: argocd
+#spec:
+#  destination:
+#    namespace: demo
+#    server: https://kubernetes.default.svc
+#  project: default
+#  source:
+#    helm:
+#      parameters:
+#        - name: build.enabled
+#          value: "false"
+#        - name: deploy.route.enabled
+#          value: "false"
+#    chart: sink-connector-lightweight
+#    path: sink-connector-lightweight/helm/sink-connector-lightweight
+#    repoURL: https://github.com/Altinity/clickhouse-sink-connector.git
+#    targetRevision: 0.1.0

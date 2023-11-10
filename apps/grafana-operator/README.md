@@ -1,32 +1,66 @@
-# Grafana
+---
+title: "Helm installation"
+linkTitle: "Helm installation"
+---
 
-Installs Grafana Operator from GitHub grafana-operator repo manifests using 
-kustomize. 
+# grafana-operator
 
-## Configuration
+[grafana-operator](https://github.com/grafana-operator/grafana-operator) for Kubernetes to manage Grafana instances and grafana resources.
 
-None. 
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v5.3.0](https://img.shields.io/badge/AppVersion-v5.3.0-informational?style=flat-square)
 
 ## Installation
 
-Sample installation is shown below. 
+This is a OCI helm chart, helm started support OCI in version 3.8.0.
+
+```shell
+helm upgrade -i grafana-operator oci://ghcr.io/grafana-operator/helm-charts/grafana-operator --version v5.3.0
+```
 
 ```
 argocd app create grafana-operator \
- --repo https://github.com/Altinity/argocd-examples-clickhouse.git \
- --path apps/grafana-operator \
- --dest-server https://kubernetes.default.svc --dest-namespace ch
+--repo https://github.com/Altinity/argocd-examples-clickhouse.git \
+--path apps/grafana-operator \
+--dest-server https://kubernetes.default.svc --dest-namespace ch
 argocd app sync grafana-operator
 ```
 
-## Additional notes
+## Development
 
-The grafana-operator leverages the kustomize deployment in the
-grafana-operator project.  The kustomize.yaml in this directory selects
-the version to use.
+For general and helm specific development instructions please read the [CONTRIBUTING.md](../../../CONTRIBUTING.md)
 
-The namespace ch is hardwired in ns-patch.yaml. 
+## Out of scope
 
-## Acknowledgements and Further Information
+The chart won't support any configuration of grafana instances or similar. It's only meant to be used to install the grafana-operator.
+Deployments of grafana instances using the CRs is supposed to be done outside of the chart.
 
-[grafana-operator GitHub Project](https://github.com/grafana-operator/grafana-operator)
+Currently the plan is not to support networkpolicy. The operators support os diverse configuration that you have to support all options.
+It's easier to just manage this configuration outside of the operator.
+
+## Values
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| additionalLabels | object | `{}` | additional labels to add to all resources |
+| affinity | object | `{}` | pod affinity |
+| fullnameOverride | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` | The image pull policy to use in grafana operator container |
+| image.repository | string | `"ghcr.io/grafana-operator/grafana-operator"` | grafana operator image repository |
+| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
+| imagePullSecrets | list | `[]` | image pull secrets |
+| leaderElect | bool | `false` | If you want to run multiple replicas of the grafana-operator, this is not recommended. |
+| metricsService.metricsPort | int | `9090` | metrics service port |
+| metricsService.type | string | `"ClusterIP"` | metrics service type |
+| nameOverride | string | `""` |  |
+| namespaceScope | bool | `false` | If the operator should run in namespace-scope or not, if true the operator will only be able to manage instances in the same namespace |
+| nodeSelector | object | `{}` | pod node selector |
+| podAnnotations | object | `{}` | pod annotations |
+| podSecurityContext | object | `{}` | pod security context |
+| priorityClassName | string | `""` | pod priority class name |
+| resources | object | `{}` | grafana operator container resources |
+| securityContext | object | `{"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsNonRoot":true}` | grafana operator container security context |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
+| tolerations | list | `[]` | pod tolerations |
+| watchNamespaces | string | `""` | Sets the WATCH_NAMESPACE environment variable, it defines which namespaces the operator should be listening for. By default it's all namespaces, if you only want to listen for the same namespace as the operator is deployed to look at namespaceScope. |

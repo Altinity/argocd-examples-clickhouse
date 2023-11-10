@@ -1,0 +1,15 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: clickhouse-kafka-dashboard
+  labels:
+    app: grafana
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  url: https://raw.githubusercontent.com/Altinity/clickhouse-operator/master/grafana-dashboard/Kafka_dashboard.json
+  json: ""
+  datasources:
+    - inputName: "DS_PROMETHEUS"
+      datasourceName: clickhouse-operator-prometheus
