@@ -8,6 +8,7 @@ metadata:
 spec:
   destination:
     namespace: ch
+    name: kind-kind
   project: default
   source:
     path: 'infra/prometheus-operator-crds'
