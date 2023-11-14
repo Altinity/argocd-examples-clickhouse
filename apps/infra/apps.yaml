@@ -8,14 +8,17 @@ metadata:
 spec:
   destination:
     namespace: ch
-    name: kind-kind
+    #name: kind-kind
+    server: 'https://kubernetes.default.svc'
   project: default
   source:
     path: 'apps/infra/prometheus-operator-crds'
     repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
     targetRevision: 'grafana_operator_dashboard'
   syncPolicy:
-    automated: {}
+    automated:
+      prune: true
+      selfHeal: true
 
 ---
 apiVersion: argoproj.io/v1alpha1
