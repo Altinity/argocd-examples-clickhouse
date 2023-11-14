@@ -11,7 +11,7 @@ spec:
     name: kind-kind
   project: default
   source:
-    path: 'prometheus-operator-crds'
+    path: 'apps/infra/prometheus-operator-crds'
     repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
     targetRevision: 'grafana_operator_dashboard'
   syncPolicy:
