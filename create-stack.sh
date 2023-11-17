@@ -13,7 +13,7 @@ do
         b) branch=${OPTARG};; # branch
     esac
 done
-declare -a applications=(infra clickhouse-operator zookeeper clickhouse)
+declare -a applications=(clickhouse-operator zookeeper clickhouse)
 
 #declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator zookeeper clickhouse grafana grafana-datasource)
 

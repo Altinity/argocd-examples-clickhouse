@@ -46,6 +46,11 @@ You can also use the script.
 ```
 ## Bring up the analytic stack
 
+Run the `create-infra-stack.sh`  to create the infra applications
+```
+cd apps/infra
+./create-infra-stack.sh -b <branch-name> 
+```
 Run the `create-stack.sh` script in the apps directory.
 If you need to the run changes from a specific branch
 use the following command
