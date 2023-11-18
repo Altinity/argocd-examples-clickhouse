@@ -13,7 +13,7 @@ do
         b) branch=${OPTARG};; # branch
     esac
 done
-declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator)
+declare -a applications=(prometheus-operator-crds prometheus-rbac prometheus-operator clickhouse-operator prometheus grafana-operator grafana grafana-datasource)
 
 
 for apps in "${applications[@]}"; do
