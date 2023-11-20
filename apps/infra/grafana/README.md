@@ -19,8 +19,13 @@ argocd app sync grafana
 kubectl port-forward svc/grafana -n ch 3000:3000
 ```
 
-Once the grafana server is available you may login using user/password
-admin/admin. 
+Once the grafana server is available you may login using user admin. 
+The password is generated and placed in a secret named 
+grafana-admin-credentials, which you can obtain as follows. 
+
+```
+GF_SECURITY_ADMIN_PASSWORD=$(kubectl get secret grafana-admin-credentials -o yaml | grep ADMIN_PASS | sed 's/^.*: //')
+```
 
 ## Additional notes
 
