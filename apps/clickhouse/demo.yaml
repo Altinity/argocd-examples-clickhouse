@@ -6,6 +6,8 @@ metadata:
   namespace: ch
   labels:
     app: prometheus
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   namespaceSelector:
     matchNames:
@@ -87,33 +89,3 @@ spec:
           resources:
             requests:
               storage: 50Gi
----
-apiVersion: "clickhouse.altinity.com/v1"
-kind: "ClickHouseInstallation"
-metadata:
-  name: "clickhouse-service"
-  annotations:
-    argocd.argoproj.io/sync-wave: "3"
-spec:
-  defaults:
-    templates:
-      serviceTemplate: svc-template
-  configuration:
-    settings:
-      http_port: 8124
-      tcp_port: 9001
-      interserver_http_port: 9010
-  templates:
-    serviceTemplates:
-      - name: svc-template
-        generateName: chendpoint-{chi}
-        metadata:
-          labels:
-            custom.label: "custom.value"
-        spec:
-          ports:
-            - name: http
-              port: 8123
-            - name: tcp
-              port: 9000
-          type: ClusterIP

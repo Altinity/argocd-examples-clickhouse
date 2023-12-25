@@ -6,6 +6,8 @@ metadata:
   name: zookeeper
   labels:
     app: zookeeper
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   ports:
     - port: 2181
@@ -24,6 +26,8 @@ metadata:
   name: zookeepers
   labels:
     app: zookeeper
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   ports:
     - port: 2888
@@ -61,6 +65,8 @@ metadata:
   name: zookeeper
   labels:
     app: zookeeper
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   selector:
     matchLabels:

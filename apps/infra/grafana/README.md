@@ -38,9 +38,8 @@ ssh  -L 3000:localhost:3000 bastion-host
 
 ## Additional notes
 
-The manifest is based on an [example Grafana deployment](https://github.com/Altinity/clickhouse-operator/blob/master/deploy/grafana/grafana-manually/grafana.yaml)
-provided by the Altinity K8s operater. 
+The manifest is based on an [example Grafana deployment](https://github.com/grafana-operator/grafana-operator/tree/master/examples) provided by the grafana-operator project. 
 
 ## Acknowledgements and Further Information
 
-[Altinity Kubernetes Operator for ClickHouse GitHub Project](https://github.com/Altinity/clickhouse-operator)
+[Grafana Operator GitHub Project](https://github.com/grafana-operator/grafana-operator)

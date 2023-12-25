@@ -6,7 +6,7 @@ DRY_RUN=${DRY_RUN:-no}
 ME=${0}
 
 usage() {
-  echo "${ME} [-b revision] [-c cluster] [-n namespace] [-d] [-h]"
+  echo "${ME} [-r revision] [-c cluster] [-n namespace] [-d] [-h]"
   exit $1
 }
 while getopts "r:c:dn:h" flag
