@@ -1,0 +1,19 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: "clickhouse-grafana-datasource"
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+      name: "clickhouse-operator-prometheus"
+      type: prometheus
+      access: proxy
+      url: "http://prometheus:9090"
+      isDefault: true
+      version: 1
+      editable: false
+      jsonData:
+        tlsSkipVerify: true
+        timeInterval: "5s"

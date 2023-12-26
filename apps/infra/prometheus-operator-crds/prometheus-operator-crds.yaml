@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator-crds
+  namespace: ch
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ch
+  project: default
+  source:
+    path: prometheus-operator-crds
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    targetRevision: 'grafana_operator_dashboard'

@@ -1,0 +1,143 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus-operator-crds
+  namespace: ch
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  destination:
+    namespace: ch
+    #name: kind-kind
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: 'apps/infra/prometheus-operator-crds'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    targetRevision: 'grafana_operator_dashboard'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: ch
+  name: prometheus-rbac
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/prometheus-rbac'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: ch
+  name: prometheus-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/prometheus-operator'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: ch
+  name: prometheus
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/prometheus'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: ch
+  name: grafana-operator
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/grafana-operator'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: ch
+  name: grafana
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/grafana'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}
+
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  namespace: ch
+  name: grafana-datasource
+  annotations:
+    argocd.argoproj.io/sync-wave: "7"
+spec:
+  destination:
+    #namespace: default
+    name: in-cluster
+  project: default
+  source:
+    path: 'infra/grafana-datasource'
+    repoURL: https://github.com/Altinity/argocd-examples-clickhouse.git
+    #targetRevision: '5146'
+  syncPolicy:
+    automated: {}

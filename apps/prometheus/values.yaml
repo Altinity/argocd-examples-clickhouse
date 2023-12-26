@@ -1,5 +1,0 @@
-# Values for Prometheus. 
-prometheus:
-  server:
-    persistentVolume:
-      size: 16Gi
